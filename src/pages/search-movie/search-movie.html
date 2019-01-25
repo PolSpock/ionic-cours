@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Movies</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-searchbar
+    [(ngModel)]="movieTitle"
+    [showCancelButton]="showCancelButton"
+    (ionInput)="onInput($event)"
+    (ionCancel)="onCancel($event)">
+  </ion-searchbar>
+  <ion-card *ngFor="let movie of movies" (click)='onClickFuntion($event, movie)'>
+    <img src="{{movie.Poster}}"/>
+    <div class="card-title">{{movie.Title}}</div>
+    <div class="card-subtitle">{{movie.Title}}</div>
+  </ion-card>
+</ion-content>

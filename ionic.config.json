@@ -1,5 +1,7 @@
 {
   "name": "pbar",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }

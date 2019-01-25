@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Séries</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-searchbar
+    [(ngModel)]="serieTitle"
+    [showCancelButton]="showCancelButton"
+    (ionInput)="onInput($event)"
+    (ionCancel)="onCancel($event)">
+  </ion-searchbar>
+  <ion-card *ngFor="let serie of series" (click)='onClickFuntion($event, serie)'>
+    <img src="{{serie.Poster}}"/>
+    <div class="card-title">{{serie.Title}}</div>
+    <div class="card-subtitle">{{serie.Title}}</div>
+  </ion-card>
+</ion-content>
