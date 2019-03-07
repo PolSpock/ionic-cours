@@ -16,6 +16,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {EpisodePage} from "../pages/episode/episode";
 import { FavoriteListProvider } from '../providers/favorite-list/favorite-list';
 import {FavoritePage} from "../pages/favorite/favorite";
+import {NativeStorage} from "@ionic-native/native-storage";
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import {FavoritePage} from "../pages/favorite/favorite";
   providers: [
     StatusBar,
     SplashScreen,
+    NativeStorage,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     OmdbProvider,
     FavoriteListProvider

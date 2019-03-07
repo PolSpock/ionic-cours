@@ -4,13 +4,6 @@ import {FavoriteListProvider} from "../../providers/favorite-list/favorite-list"
 import {DetailPage} from "../detail/detail";
 import * as papa from 'papaparse';
 
-/**
- * Generated class for the FavoritePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-favorite',

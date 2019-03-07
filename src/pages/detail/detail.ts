@@ -19,7 +19,7 @@ export class DetailPage {
   constructor(public navCtrl: NavController, private navParams: NavParams, private omdbProvider: OmdbProvider, private favoriteListProvider: FavoriteListProvider) {
     let imdbID = this.navParams.get('imdbID');
 
-    console.log(imdbID);
+    console.log('constructor');
 
     this.favoriteList = this.favoriteListProvider.getList();
     this.imdbId = imdbID;
@@ -50,15 +50,19 @@ export class DetailPage {
 
   private wannaFavorite(bool: boolean) {
     if (this.allInfos && bool) {
-      this.allInfos.favIndex = this.favoriteListProvider.getIndex();
       this.favoriteListProvider.addFavorite(this.allInfos);
+      console.log(this.allInfos);
       this.isFavorite = true;
     } else if (this.allInfos && !bool) {
       console.log("wannaRemove");
 
-      this.favoriteList.forEach((fav) => {
+      console.log(this.favoriteList);
+      this.favoriteList.forEach((fav, index) => {
+        console.log(fav);
         if (fav.imdbID == this.imdbId) {
-          this.favoriteListProvider.removeFavorite(this.allInfos.favIndex);
+          console.log('fav.imdbId : ' + fav.imdbID);
+          console.log(index);
+          this.favoriteListProvider.removeFavorite(index);
           this.isFavorite = false;
         }
       });
