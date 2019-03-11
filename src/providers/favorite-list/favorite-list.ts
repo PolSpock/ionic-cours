@@ -15,10 +15,12 @@ export class FavoriteListProvider {
     this.favoriteList.push(fav);
     console.log('addFavorite')
 
+    /*
     this.nativeStorage.setItem('favoriteList', this.favoriteList).then(
       () => console.log('Stored item!'),
       error => console.error('Error storing item', error)
     );
+    */
   }
 
   public removeFavorite(index) {
@@ -30,9 +32,8 @@ export class FavoriteListProvider {
   }
 
   public getList() {
-
     this.nativeStorage.getItem('favoriteList').then((favoriteList) => {
-      console.log('Your age is', favoriteList);
+      console.log('favoriteList + ', favoriteList);
     });
 
     return this.favoriteList;

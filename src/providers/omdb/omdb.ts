@@ -17,7 +17,7 @@ export class OmdbProvider {
   private posterUrl: string = 'http://img.omdbapi.com/';
 
   private httpOptions = {
-    headers: new HttpHeaders({'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'})
+    headers: new HttpHeaders()
   };
 
   /*
