@@ -1,14 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {OmdbProvider} from "../../providers/omdb/omdb";
-import {EpisodePage} from "../episode/episode";
-
-/**
- * Generated class for the SeasonPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import {DetailPage} from "../detail/detail";
 
 @IonicPage()
 @Component({
@@ -35,7 +28,7 @@ export class SeasonPage {
   private onClickFuntion(e, episode) {
     console.log(episode);
 
-    this.navCtrl.push(EpisodePage, { imdbID: episode.imdbID }).catch(function(err) { console.log(err)});
+    this.navCtrl.push(DetailPage, { imdbID: episode.imdbID }).catch(function(err) { console.log(err)});
 
   }
 }

@@ -14,7 +14,14 @@ export class FavoritePage {
   private favoriteList = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private favoriteListProvider: FavoriteListProvider) {
-    this.favoriteList = this.favoriteListProvider.getList() || [];
+  }
+
+  ionViewWillEnter(){
+    this.favoriteListProvider.getList().then((val) => {
+      this.favoriteList = val;
+      console.log("favorite.ts : ");
+      console.log(this.favoriteList);
+    });
   }
 
   private onClickFuntion(e, fav) {

@@ -12,28 +12,31 @@ export class DetailPage {
 
   private allInfos;
   private imdbId;
-  private isFavorite = false;
+  private isFavorite;
 
   private favoriteList = [];
 
   constructor(public navCtrl: NavController, private navParams: NavParams, private omdbProvider: OmdbProvider, private favoriteListProvider: FavoriteListProvider) {
-    let imdbID = this.navParams.get('imdbID');
+  }
 
-    console.log('constructor');
+  ionViewWillEnter() {
+    this.imdbId = this.navParams.get('imdbID') || '';
+    this.isFavorite = false;
 
-    this.favoriteList = this.favoriteListProvider.getList();
-    this.imdbId = imdbID;
+    this.favoriteListProvider.getList().then((val) => {
+      this.favoriteList = val;
 
-    this.favoriteList.forEach((fav) => {
-      if (fav.imdbID == this.imdbId) {
-        this.isFavorite = true;
-      }
+      this.favoriteList.forEach((fav) => {
+        if (fav.imdbID == this.imdbId) {
+          this.isFavorite = true;
+        }
+      });
     });
 
     this.omdbProvider.getInfos(this.imdbId).subscribe((data) => {
       console.log(data);
       this.allInfos = data;
-    })
+    });
   }
 
   private stringToArray(value) {
@@ -51,17 +54,10 @@ export class DetailPage {
   private wannaFavorite(bool: boolean) {
     if (this.allInfos && bool) {
       this.favoriteListProvider.addFavorite(this.allInfos);
-      console.log(this.allInfos);
       this.isFavorite = true;
     } else if (this.allInfos && !bool) {
-      console.log("wannaRemove");
-
-      console.log(this.favoriteList);
       this.favoriteList.forEach((fav, index) => {
-        console.log(fav);
         if (fav.imdbID == this.imdbId) {
-          console.log('fav.imdbId : ' + fav.imdbID);
-          console.log(index);
           this.favoriteListProvider.removeFavorite(index);
           this.isFavorite = false;
         }

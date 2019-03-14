@@ -13,10 +13,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { OmdbProvider } from '../providers/omdb/omdb';
 import {HttpClientModule} from "@angular/common/http";
-import {EpisodePage} from "../pages/episode/episode";
 import { FavoriteListProvider } from '../providers/favorite-list/favorite-list';
 import {FavoritePage} from "../pages/favorite/favorite";
-import {NativeStorage} from "@ionic-native/native-storage";
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
@@ -26,13 +25,13 @@ import {NativeStorage} from "@ionic-native/native-storage";
     SearchMoviePage,
     TabsPage,
     SeasonPage,
-    EpisodePage,
     FavoritePage
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -42,13 +41,11 @@ import {NativeStorage} from "@ionic-native/native-storage";
     SearchMoviePage,
     TabsPage,
     SeasonPage,
-    EpisodePage,
     FavoritePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    NativeStorage,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     OmdbProvider,
     FavoriteListProvider

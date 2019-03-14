@@ -70,12 +70,6 @@ export class OmdbProvider {
         catchError(this.handleError)*/);
   }
 
-  getEpisode(omdbId: string) : Observable<any> {
-    return this.http.get(this.omdbUrl + '?i=' + omdbId + '&apikey=' + this.apiKey, this.httpOptions).pipe(
-      map(this.extractData)/*,0
-        catchError(this.handleError)*/);
-  }
-
   /*
   getMedia() : Observable<any> {
     return this.http.get(this.omdbUrl + '?type=series&apikey=' + this.apiKey, this.httpOptions).pipe(
