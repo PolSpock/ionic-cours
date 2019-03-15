@@ -17,6 +17,7 @@ export class SeasonPage {
     let nbSeason = this.navParams.get('nbSeason');
 
     console.log(imdbID);
+    console.log("SeasonPage");
 
     this.omdbProvider.getSeason(imdbID, nbSeason).subscribe((data) => {
       this.season = data;

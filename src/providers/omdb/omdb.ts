@@ -3,12 +3,6 @@ import { Injectable } from '@angular/core';
 import {map} from "rxjs/operators";
 import {Observable } from "rxjs/Observable";
 
-/*
-  Generated class for the OmdbProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class OmdbProvider {
 
@@ -70,13 +64,15 @@ export class OmdbProvider {
         catchError(this.handleError)*/);
   }
 
-  /*
-  getMedia() : Observable<any> {
-    return this.http.get(this.omdbUrl + '?type=series&apikey=' + this.apiKey, this.httpOptions).pipe(
-      map(this.extractData),0
-        catchError(this.handleError));
+  getImage(omdbId: string) : Observable<any> {
+    return this.http.get(this.posterUrl + '?i=' + omdbId + '&apikey=' + this.apiKey + '&h=600', this.httpOptions).pipe(
+      map(this.extractData)/*,
+        catchError(this.handleError)*/);
   }
-  */
+
+  getImageUrl(omdbId: string) : string {
+    return this.posterUrl + '?i=' + omdbId + '&apikey=' + this.apiKey + '&h=600';
+  }
 
     /*
     return this.http.get(this.cmdbUrl + '?apikey=' + this.apiKey)

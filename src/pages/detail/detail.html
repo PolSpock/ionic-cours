@@ -15,41 +15,52 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid *ngIf="allInfos">
-    <ion-row>
-      <ion-col col-12>{{ allInfos.Title }}</ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-6>{{ allInfos.Released }}</ion-col>
-      <ion-col col-6>{{ allInfos.Rated }}</ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-12>{{ allInfos.Plot }}</ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-6>{{ allInfos.Genre }}</ion-col>
-      <ion-col col-6 *ngIf="allInfos.Type == 'movie'">{{ allInfos.Runtime }}</ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-12>{{ allInfos.Director }}</ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-12>{{ allInfos.Actors }}</ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-12>{{ allInfos.Awards }}</ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-6>{{ allInfos.imdbRating }}</ion-col>
-      <ion-col col-6>{{ allInfos.imdbVotes }}</ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-12>{{ allInfos.Website }}</ion-col>
-    </ion-row>
-    <ion-list *ngIf="allInfos.Type == 'series' && allInfos.totalSeasons > 0">
-      <ion-row *ngFor="let nbSeason of stringToArray(allInfos.totalSeasons)">
-        <ion-col col-12 (click)='onClickFuntion($event, nbSeason)'>Season {{ nbSeason }}</ion-col>
+  <ion-card>
+    <ion-grid *ngIf="allInfos">
+      <ion-row>
+        <ion-col col-12>
+          <img src="{{infoImage}}"/>
+          <button ion-button icon-end full (click)='downloadImage()'>
+            Export CSV
+            <ion-icon name="download"></ion-icon>
+          </button>
+        </ion-col>
       </ion-row>
-    </ion-list>
-  </ion-grid>
+      <ion-row>
+        <ion-col col-12>{{ allInfos.Title }}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>{{ allInfos.Released }}</ion-col>
+        <ion-col col-6>{{ allInfos.Rated }}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12>{{ allInfos.Plot }}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>{{ allInfos.Genre }}</ion-col>
+        <ion-col col-6 *ngIf="allInfos.Type == 'movie'">{{ allInfos.Runtime }}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12>{{ allInfos.Director }}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12>{{ allInfos.Actors }}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12>{{ allInfos.Awards }}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>{{ allInfos.imdbRating }}</ion-col>
+        <ion-col col-6>{{ allInfos.imdbVotes }}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12>{{ allInfos.Website }}</ion-col>
+      </ion-row>
+      <ion-list *ngIf="totalSeasons">
+        <ion-row *ngFor="let nbSeason of totalSeasons">
+          <ion-col col-12 (click)='onClickFuntion($event, nbSeason)'>Season {{ nbSeason }}</ion-col>
+        </ion-row>
+      </ion-list>
+    </ion-grid>
+  </ion-card>
 </ion-content>

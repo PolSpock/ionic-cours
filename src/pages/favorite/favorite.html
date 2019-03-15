@@ -1,9 +1,3 @@
-<!--
-  Generated template for the FavoritePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
   <ion-navbar>
     <ion-title>favorite</ion-title>
@@ -21,7 +15,15 @@
 <ion-footer>
   <ion-toolbar>
     <button ion-button icon-end full (click)='downloadCSV()'>
-      Export
+      Export CSV
+      <ion-icon name="download"></ion-icon>
+    </button>
+    <button ion-button icon-end full (click)='downloadJSON()'>
+      Export JSON
+      <ion-icon name="download"></ion-icon>
+    </button>
+    <button ion-button icon-end full (click)='importFavorite()'>
+      Importer
       <ion-icon name="download"></ion-icon>
     </button>
   </ion-toolbar>

@@ -11,7 +11,7 @@
     (ionInput)="onInput($event)"
     (ionCancel)="onCancel($event)">
   </ion-searchbar>
-  <ion-card *ngFor="let movie of movies" (click)='onClickFuntion($event, movie)'>
+  <ion-card *ngFor="let movie of movies" (click)='onClickFuntion($event, movie)' class="search-movie-card">
     <img *ngIf="movie.Poster != 'N/A'; else noImage" src="{{movie.Poster}}"/>
     <ng-template #noImage>
       <img src="assets/imgs/logo.png"/>

@@ -16,6 +16,11 @@ import {HttpClientModule} from "@angular/common/http";
 import { FavoriteListProvider } from '../providers/favorite-list/favorite-list';
 import {FavoritePage} from "../pages/favorite/favorite";
 import { IonicStorageModule } from '@ionic/storage';
+import {FileTransfer } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
+import {AndroidPermissions} from "@ionic-native/android-permissions";
+import {FilePath} from "@ionic-native/file-path";
+
 
 @NgModule({
   declarations: [
@@ -46,9 +51,13 @@ import { IonicStorageModule } from '@ionic/storage';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
     OmdbProvider,
-    FavoriteListProvider
+    FavoriteListProvider,
+    FileTransfer,
+    AndroidPermissions,
+    FilePath,
+    File,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]
 })
 export class AppModule {}

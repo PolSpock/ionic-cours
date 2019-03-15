@@ -3,6 +3,8 @@ import {NavController, NavParams} from 'ionic-angular';
 import {OmdbProvider} from "../../providers/omdb/omdb";
 import {SeasonPage} from "../season/season";
 import {FavoriteListProvider} from "../../providers/favorite-list/favorite-list";
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
 
 @Component({
   selector: 'page-detail',
@@ -16,7 +18,12 @@ export class DetailPage {
 
   private favoriteList = [];
 
-  constructor(public navCtrl: NavController, private navParams: NavParams, private omdbProvider: OmdbProvider, private favoriteListProvider: FavoriteListProvider) {
+  private infoImage;
+
+  private totalSeasons;
+
+  constructor(private transfer: FileTransfer, private file: File, public navCtrl: NavController, private navParams: NavParams, private omdbProvider: OmdbProvider, private favoriteListProvider: FavoriteListProvider,
+              ) {
   }
 
   ionViewWillEnter() {
@@ -36,6 +43,35 @@ export class DetailPage {
     this.omdbProvider.getInfos(this.imdbId).subscribe((data) => {
       console.log(data);
       this.allInfos = data;
+
+      this.treatData();
+    });
+
+    /*
+    this.infoImage = this.omdbProvider.getImage(this.imdbId);
+    console.log("this.infoImage");
+    console.log(this.infoImage);
+    */
+
+  }
+
+  private treatData() {
+    // Show Seasons
+    if (this.allInfos.Type == 'series' && this.allInfos.totalSeasons > 0) {
+      this.totalSeasons = this.stringToArray(this.allInfos.totalSeasons)
+    }
+
+    // Try to show HD Image
+    this.omdbProvider.getImage(this.imdbId).subscribe((data) => {
+      console.log(data);
+    }, (error) => {
+      if (error.status == 200) {
+        this.infoImage = this.omdbProvider.getImageUrl(this.imdbId);
+      } else if (this.allInfos.Poster != 'N/A') {
+        this.infoImage = this.allInfos.Poster;
+      } else {
+        this.infoImage = "assets/imgs/logo.png";
+      }
     });
   }
 
@@ -64,5 +100,34 @@ export class DetailPage {
       });
     }
   }
+
+  downloadImage() {
+    alert("downloadImage");
+
+    alert('ok');
+    let test = setTimeout( () => {
+
+      console.log("downloadImage");
+      const fileTransfer: FileTransferObject = this.transfer.create();
+
+      //const url = this.infoImage;
+      //const url = "assets/imgs/logo.png";
+      const url = 'http://img.omdbapi.com/?i=tt1592873&apikey=75522b56';
+
+      alert(url);
+      alert(this.file.applicationStorageDirectory);
+      alert(this.file.externalApplicationStorageDirectory);
+      alert(this.file);
+
+      fileTransfer.download(url, this.file.applicationStorageDirectory + '/Download/file.jpg').then((entry) => {
+        alert('download complete: ' + entry.toURL());
+      }, (error) => {
+        // handle error
+        alert(JSON.stringify(error));
+      });
+
+      alert("j'ai terminé");
+    }, 3000);
+  };
 
 }
