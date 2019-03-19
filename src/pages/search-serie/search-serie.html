@@ -11,7 +11,7 @@
     (ionInput)="onInput($event)"
     (ionCancel)="onCancel($event)">
   </ion-searchbar>
-  <ion-card *ngFor="let serie of series" (click)='onClickFuntion($event, serie)'>
+  <ion-card *ngFor="let serie of series" (click)='showSerieDetail($event, serie)'>
     <img *ngIf="serie.Poster != 'N/A'; else noImage" src="{{serie.Poster}}"/>
     <ng-template #noImage>
       <img src="assets/imgs/logo.png"/>

@@ -21,6 +21,7 @@ import { File } from '@ionic-native/file';
 import {AndroidPermissions} from "@ionic-native/android-permissions";
 import {FilePath} from "@ionic-native/file-path";
 import { FileChooser } from '@ionic-native/file-chooser';
+import { ExportProvider } from '../providers/export/export';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { FileChooser } from '@ionic-native/file-chooser';
     FileChooser,
     File,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ExportProvider
   ]
 })
 export class AppModule {}

@@ -58,7 +58,7 @@
       </ion-row>
       <ion-list *ngIf="totalSeasons">
         <ion-row *ngFor="let nbSeason of totalSeasons">
-          <ion-col col-12 (click)='onClickFuntion($event, nbSeason)'>Season {{ nbSeason }}</ion-col>
+          <ion-col col-12 (click)='showEpisodes($event, nbSeason)'>Season {{ nbSeason }}</ion-col>
         </ion-row>
       </ion-list>
     </ion-grid>

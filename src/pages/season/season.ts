@@ -26,7 +26,7 @@ export class SeasonPage {
     })
   }
 
-  private onClickFuntion(e, episode) {
+  private showEpisodeDetail(e, episode) {
     console.log(episode);
 
     this.navCtrl.push(DetailPage, { imdbID: episode.imdbID }).catch(function(err) { console.log(err)});

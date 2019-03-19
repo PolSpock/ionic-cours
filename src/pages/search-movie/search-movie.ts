@@ -25,7 +25,7 @@ export class SearchMoviePage {
     this.omdbProvider.getMovies(this.movieTitle).subscribe((data) => { this.movies = data.Search })
   }
 
-  private onClickFuntion(e, movie) {
+  private showMovieDetail(e, movie) {
     console.log(movie);
 
     this.navCtrl.push(DetailPage, { imdbID: movie.imdbID }).catch(function(err) { console.log(err)});

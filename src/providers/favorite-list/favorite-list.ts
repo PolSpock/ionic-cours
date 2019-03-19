@@ -1,14 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { ExportProvider } from '../export/export';
 
 @Injectable()
 export class FavoriteListProvider {
 
   private favoriteList = [];
   private favoriteListIsInit = false;
+  private TYPE_EXPORT_CSV = 'csv';
 
-  constructor(public http: HttpClient, private storage: Storage) {
+  constructor(public http: HttpClient, private storage: Storage,
+    private exportProvider: ExportProvider) {
     console.log('Hello FavoriteListProvider Provider');
   }
 
@@ -59,5 +62,13 @@ export class FavoriteListProvider {
     console.log(this.favoriteList);
 
     return this.favoriteList;
+  }
+
+  public exportFavorite(type: string) {
+    if (type.toLocaleLowerCase() == this.TYPE_EXPORT_CSV) {
+      this.exportProvider.exportDataToCSV('favorite.csv', this.favoriteList);
+    } else {
+      this.exportProvider.exportDataToJSON('favorite.json', this.favoriteList);      
+    }
   }
 }

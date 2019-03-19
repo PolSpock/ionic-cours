@@ -25,7 +25,7 @@ export class SearchSeriePage {
     this.omdbProvider.getSeries(this.serieTitle).subscribe((data) => { this.series = data.Search });
   }
 
-  private onClickFuntion(e, serie) {
+  private showSerieDetail(e, serie) {
     console.log(serie);
 
     this.navCtrl.push(DetailPage, { imdbID: serie.imdbID }).catch(function(err) { console.log(err)});

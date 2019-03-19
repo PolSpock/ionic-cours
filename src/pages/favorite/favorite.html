@@ -5,20 +5,20 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card *ngFor="let movie of favoriteList" (click)='onClickFuntion($event, movie)'>
-    <img src="{{movie.Poster}}"/>
-    <div class="card-title">{{movie.Title}}</div>
-    <div class="card-subtitle">{{movie.Title}}</div>
+  <ion-card *ngFor="let favorite of favoriteList" (click)='showFavoriteDetail($event, favorite)'>
+    <img src="{{favorite.Poster}}"/>
+    <div class="card-title">{{favorite.Title}}</div>
+    <div class="card-subtitle">{{favorite.Title}}</div>
   </ion-card>
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
-    <button ion-button icon-end full (click)='downloadCSV()'>
+    <button ion-button icon-end full (click)='exportFavorite("csv")'>
       Export CSV
       <ion-icon name="download"></ion-icon>
     </button>
-    <button ion-button icon-end full (click)='downloadJSON()'>
+    <button ion-button icon-end full (click)='exportFavorite("json")'>
       Export JSON
       <ion-icon name="download"></ion-icon>
     </button>

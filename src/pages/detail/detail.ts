@@ -84,7 +84,7 @@ export class DetailPage {
     return season
   }
 
-  private onClickFuntion(e, nbSeason) {
+  private showEpisodes(e, nbSeason) {
     this.navCtrl.push(SeasonPage, { imdbID: this.allInfos.imdbID, nbSeason: nbSeason }).catch(function(err) { console.log(err)});
   }
 
