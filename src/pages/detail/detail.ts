@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {NavController, NavParams, Platform} from 'ionic-angular';
 import {OmdbProvider} from "../../providers/omdb/omdb";
 import {SeasonPage} from "../season/season";
 import {FavoriteListProvider} from "../../providers/favorite-list/favorite-list";
@@ -22,8 +22,9 @@ export class DetailPage {
 
   private totalSeasons;
 
-  constructor(private transfer: FileTransfer, private file: File, public navCtrl: NavController, private navParams: NavParams, private omdbProvider: OmdbProvider, private favoriteListProvider: FavoriteListProvider,
-              ) {
+  constructor(private transfer: FileTransfer,
+    private file: File, public navCtrl: NavController, private navParams: NavParams,
+    private omdbProvider: OmdbProvider, private favoriteListProvider: FavoriteListProvider) {
   }
 
   ionViewWillEnter() {
@@ -103,11 +104,26 @@ export class DetailPage {
 
   downloadImage() {
     alert("downloadImage");
-
-    alert('ok');
-    let test = setTimeout( () => {
-
       console.log("downloadImage");
+      
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var downloadUrl = URL.createObjectURL(xhttp.response);
+            var a = document.createElement("a");
+            document.body.appendChild(a);
+            a.style.display = "none";
+            a.href = downloadUrl;
+            a.download = "";
+            a.click();
+            a.remove();
+        }
+      };
+      xhttp.open("GET", this.infoImage, true);
+      xhttp.responseType = "blob";
+      xhttp.send();
+
+      /*
       const fileTransfer: FileTransferObject = this.transfer.create();
 
       //const url = this.infoImage;
@@ -117,9 +133,10 @@ export class DetailPage {
       alert(url);
       alert(this.file.applicationStorageDirectory);
       alert(this.file.externalApplicationStorageDirectory);
-      alert(this.file);
+      alert(this.file.dataDirectory);
+      console.log(this.file);
 
-      fileTransfer.download(url, this.file.applicationStorageDirectory + '/Download/file.jpg').then((entry) => {
+      fileTransfer.download(url, this.file.cacheDirectory + 'file.jpg').then((entry) => {
         alert('download complete: ' + entry.toURL());
       }, (error) => {
         // handle error
@@ -127,7 +144,6 @@ export class DetailPage {
       });
 
       alert("j'ai terminé");
-    }, 3000);
+      */
   };
-
 }

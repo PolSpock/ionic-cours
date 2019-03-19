@@ -20,7 +20,7 @@ import {FileTransfer } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 import {AndroidPermissions} from "@ionic-native/android-permissions";
 import {FilePath} from "@ionic-native/file-path";
-
+import { FileChooser } from '@ionic-native/file-chooser';
 
 @NgModule({
   declarations: [
@@ -56,6 +56,7 @@ import {FilePath} from "@ionic-native/file-path";
     FileTransfer,
     AndroidPermissions,
     FilePath,
+    FileChooser,
     File,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]

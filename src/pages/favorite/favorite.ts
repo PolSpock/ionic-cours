@@ -4,6 +4,8 @@ import {FavoriteListProvider} from "../../providers/favorite-list/favorite-list"
 import {DetailPage} from "../detail/detail";
 import { File } from '@ionic-native/file';
 import {FilePath} from "@ionic-native/file-path";
+import { FileChooser } from '@ionic-native/file-chooser';
+import * as papa from 'papaparse';
 
 @IonicPage()
 @Component({
@@ -15,7 +17,7 @@ export class FavoritePage {
   private favoriteList = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private favoriteListProvider: FavoriteListProvider,
-              private file: File, private filePath: FilePath) {
+              private file: File, private filePath: FilePath, private fileChooser: FileChooser) {
   }
 
   ionViewWillEnter(){
@@ -39,8 +41,6 @@ export class FavoritePage {
   headerRow: any[] = [];
 
   private downloadCSV() {
-    /*
-    let papa = '';
     console.log(JSON.stringify(this.favoriteList));
     let parsedData = papa.parse(JSON.stringify(this.favoriteList), {
       quotes: false, //or array of booleans
@@ -74,7 +74,6 @@ export class FavoritePage {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    */
   }
 
   private downloadJSON() {
@@ -90,7 +89,16 @@ export class FavoritePage {
 
   private importFavorite() {
     console.log(this.file);
-    let path = this.file.dataDirectory + 'file.jpg';
+
+    /*
+    this.fileChooser.open()
+    .then(uri => console.log(uri))
+    .catch(e => console.log(e));
+    */
+
+    
+    //let path = this.file.dataDirectory + 'file.jpg';
+    let path = 'C:\Users\SPBN06961\Downloads\caf839bc-fcbe-4880-9b9b-f2db755a8baa.jpg';
     this.file.resolveLocalFilesystemUrl(path).then((fileName) => {
       let filePathWithoutFileName = path.toString().replace(fileName.name.toString(), '');
       this.filePath.resolveNativePath(filePathWithoutFileName).then((nativePath) => {

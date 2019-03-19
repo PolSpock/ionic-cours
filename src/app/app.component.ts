@@ -12,10 +12,10 @@ import {AndroidPermissions} from "@ionic-native/android-permissions";
 export class MyApp {
   rootPage:any = TabsPage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, androidPermissions: AndroidPermissions) {
     platform.ready().then(() => {
       alert("android");
-      /*
+      
       androidPermissions.requestPermissions(
         [
           androidPermissions.PERMISSION.READ_EXTERNAL_STORAGE,
@@ -23,8 +23,8 @@ export class MyApp {
         ]
       ).catch((error) => {
         alert(error);
+        console.log(error);
       });
-      */
 
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -32,6 +32,7 @@ export class MyApp {
       splashScreen.hide();
     }).catch((error) => {
       alert(error);
+      console.log(error);      
     });
   }
 }
