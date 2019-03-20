@@ -64,7 +64,7 @@ export class OmdbProvider {
 
   getImage(omdbId: string) : Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.get(this.posterUrl + '?i=' + omdbId + '&apikey=' + this.apiKey + '&h=800').subscribe(data => {
+      this.http.get(this.posterUrl + '?i=' + omdbId + '&apikey=' + this.apiKey + '&h=720').subscribe(data => {
         resolve(data);
       }, err => {
         reject(err);
@@ -73,6 +73,6 @@ export class OmdbProvider {
   }
 
   getImageUrl(omdbId: string) : string {
-    return this.posterUrl + '?i=' + omdbId + '&apikey=' + this.apiKey + '&h=800';
+    return this.posterUrl + '?i=' + omdbId + '&apikey=' + this.apiKey + '&h=720';
   }
 }
