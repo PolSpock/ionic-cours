@@ -1,29 +1,35 @@
-.search-movie-card {
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-}
+page-search-movie {
+  .search-movie-card {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  }
 
-ion-card {
-  position: relative;
-  text-align: center;
-}
+  ion-card {
+    position: relative;
+    text-align: center;
+  }
 
-.card-bottom {
-  width: 100%;
-  height: 5%;
-  position: absolute;  
-  background-color: hsla(0, 0%, 0%, 0.33);
-  top: 95%;
-}
+  img {
+    cursor: pointer;
+  }
 
-.card-bottom-title {
-  position: absolute;
-  top: 5%;
-  font-size: 2.0em;
-  width: 100%;
-  font-weight: bold;
-  color: #fff;
-}
+  .card-bottom {
+    width: 100%;
+    height: 5%;
+    position: absolute;  
+    background-color: hsla(0, 0%, 0%, 0.33);
+    top: 95%;
+  }
 
-.title-icon {
-  vertical-align: bottom;
+  .card-bottom-title {
+    position: absolute;
+    top: 5%;
+    font-size: 2.0em;
+    width: 100%;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .title-icon {
+    vertical-align: bottom;
+  }
 }
