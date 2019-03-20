@@ -1,30 +1,40 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>favorite</ion-title>
+    <ion-title><ion-icon name="star" class="title-icon"></ion-icon> Favoris</ion-title>    
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-card *ngFor="let favorite of favoriteList" (click)='showFavoriteDetail($event, favorite)'>
     <img src="{{favorite.Poster}}"/>
-    <div class="card-title">{{favorite.Title}}</div>
-    <div class="card-subtitle">{{favorite.Title}}</div>
+    <div class="card-bottom">
+      <div class="card-bottom-title">{{favorite.Title}}</div>
+    </div>
   </ion-card>
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
-    <button ion-button icon-end full (click)='exportFavorite("csv")' class="favorite-btn-color">
-      Export CSV
-      <ion-icon name="download"></ion-icon>
-    </button>
-    <button ion-button icon-end full (click)='exportFavorite("json")' class="favorite-btn-color">
-      Export JSON
-      <ion-icon name="download"></ion-icon>
-    </button>
-    <button ion-button icon-end full (click)='importFavorite()' class="favorite-btn-color">
-      Importer
-      <ion-icon name="download"></ion-icon>
-    </button>
+
+      <ion-row>
+        <ion-col col-6>
+          <button ion-button icon-end full (click)='exportFavorite("csv")' class="favorite-btn-color">CSV
+            <ion-icon name="download"></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col col-6>
+          <button ion-button icon-end full (click)='exportFavorite("json")' class="favorite-btn-color">JSON
+            <ion-icon name="download"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12>
+          <button ion-button icon-end full (click)='importFavorite()' class="favorite-btn-color">Import
+            <ion-icon name="arrow-round-up"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+
   </ion-toolbar>
 </ion-footer>

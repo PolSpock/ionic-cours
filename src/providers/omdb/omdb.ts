@@ -65,13 +65,13 @@ export class OmdbProvider {
   }
 
   getImage(omdbId: string) : Observable<any> {
-    return this.http.get(this.posterUrl + '?i=' + omdbId + '&apikey=' + this.apiKey + '&h=600', this.httpOptions).pipe(
+    return this.http.get(this.posterUrl + '?i=' + omdbId + '&apikey=' + this.apiKey + '&h=800', this.httpOptions).pipe(
       map(this.extractData)/*,
         catchError(this.handleError)*/);
   }
 
   getImageUrl(omdbId: string) : string {
-    return this.posterUrl + '?i=' + omdbId + '&apikey=' + this.apiKey + '&h=600';
+    return this.posterUrl + '?i=' + omdbId + '&apikey=' + this.apiKey + '&h=800';
   }
 
     /*

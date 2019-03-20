@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Séries</ion-title>
+    <ion-title><ion-icon name="videocam" class="title-icon"></ion-icon> Series</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -16,7 +16,8 @@
     <ng-template #noImage>
       <img src="assets/imgs/logo.png"/>
     </ng-template>
-    <div class="card-title">{{serie.Title}}</div>
-    <div class="card-subtitle">{{serie.Title}}</div>
+    <div class="card-bottom">
+      <div class="card-bottom-title">{{serie.Title}}</div>
+    </div>
   </ion-card>
 </ion-content>

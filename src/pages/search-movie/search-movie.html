@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Movies</ion-title>
+    <ion-title><ion-icon name="film" class="title-icon"></ion-icon> Movies</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -16,7 +16,8 @@
     <ng-template #noImage>
       <img src="assets/imgs/logo.png"/>
     </ng-template>
-    <div class="card-title">{{movie.Title}}</div>
-    <div class="card-subtitle">{{movie.Title}}</div>
+    <div class="card-bottom">
+      <div class="card-bottom-title">{{movie.Title}}</div>
+    </div>
   </ion-card>
 </ion-content>

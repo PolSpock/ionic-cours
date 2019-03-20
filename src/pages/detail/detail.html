@@ -20,45 +20,48 @@
       <ion-row>
         <ion-col col-12>
           <img src="{{infoImage}}"/>
-          <button ion-button icon-end full (click)='downloadImage()'>
-            Export CSV
+          <button ion-button icon-end full (click)='downloadImage()' class="detail-btn-color">
+            Download poster
             <ion-icon name="download"></ion-icon>
           </button>
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-12>{{ allInfos.Title }}</ion-col>
+        <ion-col col-12 class="detail-title">{{ title }}</ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-6>{{ allInfos.Released }}</ion-col>
-        <ion-col col-6>{{ allInfos.Rated }}</ion-col>
+        <ion-col col-12 class="detail-plot">{{ allInfos.Plot }}</ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-12>{{ allInfos.Plot }}</ion-col>
+        <ion-col col-12 class="detail-other-font">{{ allInfos.Genre }}</ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-6>{{ allInfos.Genre }}</ion-col>
-        <ion-col col-6 *ngIf="allInfos.Type == 'movie'">{{ allInfos.Runtime }}</ion-col>
+          <ion-col col-4 class="detail-other-font">{{ allInfos.Released }}</ion-col>
+          <ion-col col-4 *ngIf="allInfos.Type == 'movie'" class="detail-other-font">{{ allInfos.Runtime }}</ion-col>          
+          <ion-col col-4 class="detail-other-font">{{ allInfos.Rated }}</ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-12>{{ allInfos.Director }}</ion-col>
+        <ion-col col-12 class="detail-other-font">{{ allInfos.Director }}</ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-12>{{ allInfos.Actors }}</ion-col>
+        <ion-col col-12 class="detail-other-font">{{ allInfos.Actors }}</ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-12>{{ allInfos.Awards }}</ion-col>
+        <ion-col col-12 class="detail-other-font">{{ allInfos.Awards }}</ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-6>{{ allInfos.imdbRating }}</ion-col>
-        <ion-col col-6>{{ allInfos.imdbVotes }}</ion-col>
+        <ion-col col-6 [ngClass]="colorImdbRating" class="detail-other-font">{{ allInfos.imdbRating }}</ion-col>
+        <ion-col col-6 class="detail-other-font">{{ allInfos.imdbVotes }} votes</ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-12>{{ allInfos.Website }}</ion-col>
+        <ion-col col-12 class="detail-website detail-other-font"><a href="{{ allInfos.Website }}">{{ allInfos.Website }}</a></ion-col>
       </ion-row>
       <ion-list *ngIf="totalSeasons">
+        <ion-row>
+          <ion-col col-12 class="detail-list-seasons-title">List of Seasons</ion-col>
+        </ion-row>
         <ion-row *ngFor="let nbSeason of totalSeasons">
-          <ion-col col-12 (click)='showEpisodes($event, nbSeason)'>Season {{ nbSeason }}</ion-col>
+          <ion-col col-12 (click)='showEpisodes($event, nbSeason)' class="detail-other-font">Season {{ nbSeason }}</ion-col>
         </ion-row>
       </ion-list>
     </ion-grid>

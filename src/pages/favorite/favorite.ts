@@ -5,7 +5,6 @@ import {DetailPage} from "../detail/detail";
 import { File } from '@ionic-native/file';
 import {FilePath} from "@ionic-native/file-path";
 import { FileChooser } from '@ionic-native/file-chooser';
-import * as papa from 'papaparse';
 
 @IonicPage()
 @Component({

@@ -4,7 +4,6 @@ import {OmdbProvider} from "../../providers/omdb/omdb";
 import {SeasonPage} from "../season/season";
 import {FavoriteListProvider} from "../../providers/favorite-list/favorite-list";
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
-import { File } from '@ionic-native/file';
 
 @Component({
   selector: 'page-detail',
@@ -19,11 +18,12 @@ export class DetailPage {
   private favoriteList = [];
 
   private infoImage;
-
+  private colorImdbRating: string = "";
   private totalSeasons;
+  private title = "";
 
   constructor(private transfer: FileTransfer,
-    private file: File, public navCtrl: NavController, private navParams: NavParams,
+    public navCtrl: NavController, private navParams: NavParams,
     private omdbProvider: OmdbProvider, private favoriteListProvider: FavoriteListProvider) {
   }
 
@@ -57,6 +57,10 @@ export class DetailPage {
   }
 
   private treatData() {
+    if (this.allInfos.Title) {
+      this.title = (this.allInfos.Title).toUpperCase();
+    }
+
     // Show Seasons
     if (this.allInfos.Type == 'series' && this.allInfos.totalSeasons > 0) {
       this.totalSeasons = this.stringToArray(this.allInfos.totalSeasons)
@@ -74,6 +78,14 @@ export class DetailPage {
         this.infoImage = "assets/imgs/logo.png";
       }
     });
+
+    // Color imdbRating
+    let imdbRating = this.allInfos.imdbRating
+    if (imdbRating && imdbRating < 5) {
+      this.colorImdbRating = "imdbRatingRed";
+    } else {
+      this.colorImdbRating = "imdbRatingGreen";
+    }
   }
 
   private stringToArray(value) {
