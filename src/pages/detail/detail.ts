@@ -64,7 +64,6 @@ export class DetailPage {
     this.omdbProvider.getImage(this.imdbId).then((data) => {
       console.log(data);
     }, (error) => {
-      console.log('error');
       if (error.status == 200) {
         this.infoImage = this.omdbProvider.getImageUrl(this.imdbId);
       } else if (this.allInfos.Poster != 'N/A') {
@@ -85,7 +84,7 @@ export class DetailPage {
 
   private stringToArray(value) {
     let season = [];
-    for(let i=1; i < value; i++){
+    for(let i=1; i <= value; i++){
       season.push(i);
     }
     return season

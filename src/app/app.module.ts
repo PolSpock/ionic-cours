@@ -24,6 +24,7 @@ import { FileChooser } from '@ionic-native/file-chooser';
 import { ExportProvider } from '../providers/export/export';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 import { YoutubeProvider } from '../providers/youtube/youtube';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { YoutubeProvider } from '../providers/youtube/youtube';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ExportProvider,
     YoutubeVideoPlayer,
-    YoutubeProvider
+    YoutubeProvider,
+    SocialSharing
   ]
 })
 export class AppModule {}

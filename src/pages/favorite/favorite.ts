@@ -5,6 +5,7 @@ import {DetailPage} from "../detail/detail";
 import { File } from '@ionic-native/file';
 import {FilePath} from "@ionic-native/file-path";
 import { FileChooser } from '@ionic-native/file-chooser';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 @IonicPage()
 @Component({
@@ -18,7 +19,8 @@ export class FavoritePage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private favoriteListProvider: FavoriteListProvider,
     private file: File, private filePath: FilePath,
-    private fileChooser: FileChooser, private platform: Platform) {
+    private fileChooser: FileChooser, private platform: Platform,
+    private socialSharing: SocialSharing) {
   }
 
   ionViewWillEnter(){
@@ -33,6 +35,23 @@ export class FavoritePage {
 
   private exportFavorite(type: string) {
     this.favoriteListProvider.exportFavorite(type);
+  }
+
+  private shareFavorite() {
+    // Check if sharing via email is supported
+    this.socialSharing.canShareViaEmail().then(() => {
+      // Sharing via email is possible
+      console.log('email go');
+
+      // Share via email
+      this.socialSharing.shareViaEmail('Body', 'Subject', ['recipient@example.org']).then(() => {
+        // Success!
+      }).catch(() => {
+        // Error!
+      });
+    }).catch(() => {
+      // Sharing via email is not possible
+    });
   }
 
   private importFavorite() {

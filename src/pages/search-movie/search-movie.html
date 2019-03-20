@@ -8,8 +8,7 @@
   <ion-searchbar
     [(ngModel)]="movieTitle"
     [showCancelButton]="showCancelButton"
-    (ionInput)="onInput($event)"
-    (ionCancel)="onCancel($event)">
+    (ionInput)="onInput($event)">
   </ion-searchbar>
   <ion-card *ngFor="let movie of movies" (click)='showMovieDetail($event, movie)' class="search-movie-card">
     <img *ngIf="movie.Poster != 'N/A'; else noImage" src="{{movie.Poster}}"/>

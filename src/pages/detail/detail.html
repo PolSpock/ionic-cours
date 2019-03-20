@@ -64,7 +64,7 @@
         <ion-row>
           <ion-col col-12 class="detail-list-seasons-title">List of Seasons</ion-col>
         </ion-row>
-        <ion-row *ngFor="let nbSeason of totalSeasons">
+        <ion-row *ngFor="let nbSeason of totalSeasons" class="detail-list-seasons-row">
           <ion-col col-12 (click)='showEpisodes($event, nbSeason)' class="detail-other-font">Season {{ nbSeason }}</ion-col>
         </ion-row>
       </ion-list>

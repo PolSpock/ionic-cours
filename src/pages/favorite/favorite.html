@@ -5,28 +5,32 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card *ngFor="let favorite of favoriteList" (click)='showFavoriteDetail($event, favorite)'>
+  <ion-card *ngFor="let favorite of favoriteList" (click)='showFavoriteDetail($event, favorite)' class="favorite-card">
     <img src="{{favorite.Poster}}"/>
     <div class="card-bottom">
       <div class="card-bottom-title">{{favorite.Title}}</div>
     </div>
-  </ion-card>
+  </ion-card> 
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
-
       <ion-row>
-        <ion-col col-6>
+        <ion-col col-4>
           <button ion-button icon-end full (click)='exportFavorite("csv")' class="favorite-btn-color">CSV
             <ion-icon name="download"></ion-icon>
           </button>
         </ion-col>
-        <ion-col col-6>
+        <ion-col col-4>
           <button ion-button icon-end full (click)='exportFavorite("json")' class="favorite-btn-color">JSON
             <ion-icon name="download"></ion-icon>
           </button>
         </ion-col>
+        <ion-col col-4>
+            <button ion-button icon-end full (click)='shareFavorite()' class="favorite-btn-color">Share
+              <ion-icon name="share"></ion-icon>
+            </button>
+          </ion-col>
       </ion-row>
       <ion-row>
         <ion-col col-12>

@@ -8,8 +8,7 @@
   <ion-searchbar
     [(ngModel)]="serieTitle"
     [showCancelButton]="showCancelButton"
-    (ionInput)="onInput($event)"
-    (ionCancel)="onCancel($event)">
+    (ionInput)="onInput($event)">
   </ion-searchbar>
   <ion-card *ngFor="let serie of series" (click)='showSerieDetail($event, serie)'>
     <img *ngIf="serie.Poster != 'N/A'; else noImage" src="{{serie.Poster}}"/>

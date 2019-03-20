@@ -6,7 +6,7 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item *ngFor="let episode of season.Episodes" (click)='showEpisodeDetail($event, episode)'>
+    <ion-item *ngFor="let episode of season.Episodes" (click)='showEpisodeDetail($event, episode)' class="season-item">
       <ion-label>{{episode.Episode}}) {{episode.Title}}</ion-label>
     </ion-item>
   </ion-list>
