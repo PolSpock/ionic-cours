@@ -37,7 +37,6 @@ export class OmdbProvider {
   }
 
   constructor(public http: HttpClient) {
-    console.log('Hello OmdbProvider Provider');
   }
 
   getMovies(movieTitle: string) : Observable<any> {
@@ -73,11 +72,4 @@ export class OmdbProvider {
   getImageUrl(omdbId: string) : string {
     return this.posterUrl + '?i=' + omdbId + '&apikey=' + this.apiKey + '&h=800';
   }
-
-    /*
-    return this.http.get(this.cmdbUrl + '?apikey=' + this.apiKey)
-      .do((res : Response ) => res.json())
-      .map((res : Response ) => res.json());
-      */
-
 }

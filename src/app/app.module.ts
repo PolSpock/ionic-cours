@@ -22,6 +22,8 @@ import {AndroidPermissions} from "@ionic-native/android-permissions";
 import {FilePath} from "@ionic-native/file-path";
 import { FileChooser } from '@ionic-native/file-chooser';
 import { ExportProvider } from '../providers/export/export';
+import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
+import { YoutubeProvider } from '../providers/youtube/youtube';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import { ExportProvider } from '../providers/export/export';
     FileChooser,
     File,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ExportProvider
+    ExportProvider,
+    YoutubeVideoPlayer,
+    YoutubeProvider
   ]
 })
 export class AppModule {}

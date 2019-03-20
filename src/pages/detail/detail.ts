@@ -3,7 +3,8 @@ import {NavController, NavParams, Platform} from 'ionic-angular';
 import {OmdbProvider} from "../../providers/omdb/omdb";
 import {SeasonPage} from "../season/season";
 import {FavoriteListProvider} from "../../providers/favorite-list/favorite-list";
-import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
+import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
+import { YoutubeProvider } from '../../providers/youtube/youtube';
 
 @Component({
   selector: 'page-detail',
@@ -22,9 +23,9 @@ export class DetailPage {
   private totalSeasons;
   private title = "";
 
-  constructor(private transfer: FileTransfer,
-    public navCtrl: NavController, private navParams: NavParams,
-    private omdbProvider: OmdbProvider, private favoriteListProvider: FavoriteListProvider) {
+  constructor(private platform: Platform, public navCtrl: NavController, private navParams: NavParams,
+    private omdbProvider: OmdbProvider, private favoriteListProvider: FavoriteListProvider,
+    private youtubeVideoPlayer: YoutubeVideoPlayer, private youtubeProvider: YoutubeProvider) {
   }
 
   ionViewWillEnter() {
@@ -47,13 +48,6 @@ export class DetailPage {
 
       this.treatData();
     });
-
-    /*
-    this.infoImage = this.omdbProvider.getImage(this.imdbId);
-    console.log("this.infoImage");
-    console.log(this.infoImage);
-    */
-
   }
 
   private treatData() {
@@ -114,48 +108,42 @@ export class DetailPage {
     }
   }
 
-  downloadImage() {
+  private downloadImage() {
     alert("downloadImage");
-      console.log("downloadImage");
-      
-      var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            var downloadUrl = URL.createObjectURL(xhttp.response);
-            var a = document.createElement("a");
-            document.body.appendChild(a);
-            a.style.display = "none";
-            a.href = downloadUrl;
-            a.download = "";
-            a.click();
-            a.remove();
-        }
-      };
-      xhttp.open("GET", this.infoImage, true);
-      xhttp.responseType = "blob";
-      xhttp.send();
-
-      /*
-      const fileTransfer: FileTransferObject = this.transfer.create();
-
-      //const url = this.infoImage;
-      //const url = "assets/imgs/logo.png";
-      const url = 'http://img.omdbapi.com/?i=tt1592873&apikey=75522b56';
-
-      alert(url);
-      alert(this.file.applicationStorageDirectory);
-      alert(this.file.externalApplicationStorageDirectory);
-      alert(this.file.dataDirectory);
-      console.log(this.file);
-
-      fileTransfer.download(url, this.file.cacheDirectory + 'file.jpg').then((entry) => {
-        alert('download complete: ' + entry.toURL());
-      }, (error) => {
-        // handle error
-        alert(JSON.stringify(error));
-      });
-
-      alert("j'ai terminé");
-      */
+    console.log("downloadImage");
+    
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          var downloadUrl = URL.createObjectURL(xhttp.response);
+          var a = document.createElement("a");
+          document.body.appendChild(a);
+          a.style.display = "none";
+          a.href = downloadUrl;
+          a.download = "";
+          a.click();
+          a.remove();
+      }
+    };
+    xhttp.open("GET", this.infoImage, true);
+    xhttp.responseType = "blob";
+    xhttp.send();
   };
+
+  private openTrailer() {
+    this.youtubeProvider.getIdByTitle(this.allInfos.Title).subscribe((data) => {
+      console.log(data);
+
+      const videoId = data.items[0].id.videoId;
+      if (videoId) {
+        if (this.platform.is('cordova')) {            
+          this.youtubeVideoPlayer.openVideo(videoId);
+        } else {
+          window.open('https://www.youtube.com/watch?v=' + videoId);
+        }      
+      }
+    }, (error) => {
+      console.error(error)
+    });
+  }
 }
