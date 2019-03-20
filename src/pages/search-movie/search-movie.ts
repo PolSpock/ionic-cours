@@ -22,7 +22,7 @@ export class SearchMoviePage {
   }
 
   private callApi() {
-    this.omdbProvider.getMovies(this.movieTitle).subscribe((data) => { this.movies = data.Search })
+    this.omdbProvider.getMovies(this.movieTitle).then((data) => { this.movies = data.Search })
   }
 
   private showMovieDetail(e, movie) {

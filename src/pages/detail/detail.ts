@@ -42,7 +42,7 @@ export class DetailPage {
       });
     });
 
-    this.omdbProvider.getInfos(this.imdbId).subscribe((data) => {
+    this.omdbProvider.getInfos(this.imdbId).then((data) => {
       console.log(data);
       this.allInfos = data;
 
@@ -61,9 +61,10 @@ export class DetailPage {
     }
 
     // Try to show HD Image
-    this.omdbProvider.getImage(this.imdbId).subscribe((data) => {
+    this.omdbProvider.getImage(this.imdbId).then((data) => {
       console.log(data);
     }, (error) => {
+      console.log('error');
       if (error.status == 200) {
         this.infoImage = this.omdbProvider.getImageUrl(this.imdbId);
       } else if (this.allInfos.Poster != 'N/A') {
@@ -131,7 +132,7 @@ export class DetailPage {
   };
 
   private openTrailer() {
-    this.youtubeProvider.getIdByTitle(this.allInfos.Title).subscribe((data) => {
+    this.youtubeProvider.getIdByTitle(this.allInfos.Title).then((data) => {
       console.log(data);
 
       const videoId = data.items[0].id.videoId;
@@ -142,8 +143,6 @@ export class DetailPage {
           window.open('https://www.youtube.com/watch?v=' + videoId);
         }      
       }
-    }, (error) => {
-      console.error(error)
     });
   }
 }

@@ -20,10 +20,14 @@ export class YoutubeProvider {
     headers: new HttpHeaders()
   };
 
-  getIdByTitle(title: string) : Observable<any> {
-    return this.http.get('https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=' + title + '%20trailer&key=' + this.youtubeApiKey, this.httpOptions).pipe(
-      map(this.extractData)/*,
-        catchError(this.handleError)*/);
+  getIdByTitle(title: string) : Promise<any> {
+    return new Promise(resolve => {
+      this.http.get('https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=' + title + '%20trailer&key=' + this.youtubeApiKey).subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.error(err);
+      });
+    });
   }
 
 }

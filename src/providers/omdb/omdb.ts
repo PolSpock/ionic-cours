@@ -14,23 +14,6 @@ export class OmdbProvider {
     headers: new HttpHeaders()
   };
 
-  /*
-  private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
-      console.error('An error occurred:', error.error.message);
-    } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong,
-      console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
-    }
-    // return an observable with a user-facing error message
-    return throwError('Something bad happened; please try again later.');
-  }
-  */
-
   private extractData(res: Response) {
     let body = res;
     return body || { };
@@ -39,34 +22,54 @@ export class OmdbProvider {
   constructor(public http: HttpClient) {
   }
 
-  getMovies(movieTitle: string) : Observable<any> {
-    return this.http.get(this.omdbUrl + '?type=movie&s=' + movieTitle + '&apikey=' + this.apiKey, this.httpOptions).pipe(
-        map(this.extractData)/*,0
-        catchError(this.handleError)*/);
+  getMovies(movieTitle: string) : Promise<any> {
+    return new Promise(resolve => {
+      this.http.get(this.omdbUrl + '?type=movie&s=' + movieTitle + '&apikey=' + this.apiKey).subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.error(err);
+      });
+    });
   }
 
-  getSeries(serieTitle: string) : Observable<any> {
-    return this.http.get(this.omdbUrl + '?type=series&s=' + serieTitle + '&apikey=' + this.apiKey, this.httpOptions).pipe(
-      map(this.extractData)/*,0
-        catchError(this.handleError)*/);
+  getSeries(serieTitle: string) : Promise<any> {
+    return new Promise(resolve => {
+      this.http.get(this.omdbUrl + '?type=series&s=' + serieTitle + '&apikey=' + this.apiKey).subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.error(err);
+      });
+    });
   }
 
-  getInfos(omdbId: string) : Observable<any> {
-    return this.http.get(this.omdbUrl + '?i=' + omdbId + '&plot=full&apikey=' + this.apiKey, this.httpOptions).pipe(
-      map(this.extractData)/*,0
-        catchError(this.handleError)*/);
+  getInfos(omdbId: string) : Promise<any> {
+    return new Promise(resolve => {
+      this.http.get(this.omdbUrl + '?i=' + omdbId + '&plot=full&apikey=' + this.apiKey).subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.error(err);
+      });
+    });
   }
 
-  getSeason(omdbId: string, nbSeason: string) : Observable<any> {
-    return this.http.get(this.omdbUrl + '?i=' + omdbId + '&Season=' + nbSeason + '&apikey=' + this.apiKey, this.httpOptions).pipe(
-      map(this.extractData)/*,0
-        catchError(this.handleError)*/);
+  getSeason(omdbId: string, nbSeason: string) : Promise<any> {
+    return new Promise(resolve => {
+      this.http.get(this.omdbUrl + '?i=' + omdbId + '&Season=' + nbSeason + '&apikey=' + this.apiKey).subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.error(err);
+      });
+    });
   }
 
-  getImage(omdbId: string) : Observable<any> {
-    return this.http.get(this.posterUrl + '?i=' + omdbId + '&apikey=' + this.apiKey + '&h=800', this.httpOptions).pipe(
-      map(this.extractData)/*,
-        catchError(this.handleError)*/);
+  getImage(omdbId: string) : Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.posterUrl + '?i=' + omdbId + '&apikey=' + this.apiKey + '&h=800').subscribe(data => {
+        resolve(data);
+      }, err => {
+        reject(err);
+      });
+    });
   }
 
   getImageUrl(omdbId: string) : string {

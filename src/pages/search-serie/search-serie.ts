@@ -22,7 +22,7 @@ export class SearchSeriePage {
   }
 
   private callApi() {
-    this.omdbProvider.getSeries(this.serieTitle).subscribe((data) => { this.series = data.Search });
+    this.omdbProvider.getSeries(this.serieTitle).then((data) => { this.series = data.Search });
   }
 
   private showSerieDetail(e, serie) {

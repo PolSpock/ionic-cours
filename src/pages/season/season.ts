@@ -19,7 +19,7 @@ export class SeasonPage {
     console.log(imdbID);
     console.log("SeasonPage");
 
-    this.omdbProvider.getSeason(imdbID, nbSeason).subscribe((data) => {
+    this.omdbProvider.getSeason(imdbID, nbSeason).then((data) => {
       this.season = data;
 
       console.log(this.season)
