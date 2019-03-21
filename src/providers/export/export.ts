@@ -29,4 +29,23 @@ export class ExportProvider {
     this.dataToDownload(fileName, JSON.stringify(dataList));
   }
 
+  public exportImage(image) {
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        let downloadUrl = URL.createObjectURL(xhttp.response);
+        let a = document.createElement("a");
+        document.body.appendChild(a);
+        a.style.display = "none";
+        a.href = downloadUrl;
+        a.download = "";
+        a.click();
+        a.remove();
+      }
+    };
+    xhttp.open("GET", image, true);
+    xhttp.responseType = "blob";
+    xhttp.send();
+  }
+
 }

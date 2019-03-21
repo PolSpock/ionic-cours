@@ -5,6 +5,7 @@ import {SeasonPage} from "../season/season";
 import {FavoriteListProvider} from "../../providers/favorite-list/favorite-list";
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 import { YoutubeProvider } from '../../providers/youtube/youtube';
+import { ExportProvider } from '../../providers/export/export';
 
 @Component({
   selector: 'page-detail',
@@ -25,7 +26,8 @@ export class DetailPage {
 
   constructor(private platform: Platform, public navCtrl: NavController, private navParams: NavParams,
     private omdbProvider: OmdbProvider, private favoriteListProvider: FavoriteListProvider,
-    private youtubeVideoPlayer: YoutubeVideoPlayer, private youtubeProvider: YoutubeProvider) {
+    private youtubeVideoPlayer: YoutubeVideoPlayer, private youtubeProvider: YoutubeProvider,
+    private exportProvider: ExportProvider) {
   }
 
   ionViewWillEnter() {
@@ -111,23 +113,8 @@ export class DetailPage {
   private downloadImage() {
     alert("downloadImage");
     console.log("downloadImage");
-    
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-          var downloadUrl = URL.createObjectURL(xhttp.response);
-          var a = document.createElement("a");
-          document.body.appendChild(a);
-          a.style.display = "none";
-          a.href = downloadUrl;
-          a.download = "";
-          a.click();
-          a.remove();
-      }
-    };
-    xhttp.open("GET", this.infoImage, true);
-    xhttp.responseType = "blob";
-    xhttp.send();
+
+    this.exportProvider.exportImage(this.infoImage);
   };
 
   private openTrailer() {
