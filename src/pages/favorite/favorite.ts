@@ -38,8 +38,8 @@ export class FavoritePage {
   }
 
   private shareFavorite() {
-    this.socialSharing.share('Favorites', 'My Favorites List', JSON.stringify(this.favoriteList)).then(() => {
-      alert('Sharing succes');
+    this.socialSharing.share(JSON.stringify(this.favoriteList), 'My Favorites List').then(() => {
+      alert('Sharing success');
     }).catch((error) => {
       alert('Sharing error');
       console.log(error);
