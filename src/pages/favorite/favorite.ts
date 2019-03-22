@@ -20,7 +20,7 @@ export class FavoritePage {
     private favoriteListProvider: FavoriteListProvider,
     private file: File, private filePath: FilePath,
     private fileChooser: FileChooser, private platform: Platform,
-    private socialSharing: SocialSharing, public base64: Base64) {
+    private socialSharing: SocialSharing) {
   }
 
   ionViewWillEnter(){
