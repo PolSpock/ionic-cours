@@ -20,7 +20,7 @@ export class FavoritePage {
     private favoriteListProvider: FavoriteListProvider,
     private file: File, private filePath: FilePath,
     private fileChooser: FileChooser, private platform: Platform,
-    private socialSharing: SocialSharing) {
+    private socialSharing: SocialSharing, public base64: Base64) {
   }
 
   ionViewWillEnter(){
@@ -38,50 +38,32 @@ export class FavoritePage {
   }
 
   private shareFavorite() {
-    // Check if sharing via email is supported
-    this.socialSharing.canShareViaEmail().then(() => {
-      // Sharing via email is possible
-      console.log('email go');
-
-      // Share via email
-      this.socialSharing.shareViaEmail('Body', 'Subject', ['recipient@example.org']).then(() => {
-        // Success!
-      }).catch(() => {
-        // Error!
-      });
-    }).catch(() => {
-      // Sharing via email is not possible
+    this.socialSharing.share('Favorites', 'My Favorites List', JSON.stringify(this.favoriteList)).then(() => {
+      alert('Sharing succes');
+    }).catch((error) => {
+      alert('Sharing error');
+      console.log(error);
     });
   }
 
   private importFavorite() {
     console.log(this.file);
 
-    /*
-    this.fileChooser.open()
-    .then(uri => console.log(uri))
-    .catch(e => console.log(e));
-    */
-
-    
-    //let path = this.file.dataDirectory + 'file.jpg';
-    /*
-    let path = 'C:\Users\SPBN06961\Downloads\caf839bc-fcbe-4880-9b9b-f2db755a8baa.jpg';
-    this.file.resolveLocalFilesystemUrl(path).then((fileName) => {
-      let filePathWithoutFileName = path.toString().replace(fileName.name.toString(), '');
-      this.filePath.resolveNativePath(filePathWithoutFileName).then((nativePath) => {
-        console.log(nativePath);
-        console.log(fileName.name);
-        //his.read(nativePath, fileName.name);
-      });
-    });
-    */
-
     if (this.platform.is("android")) {
-      console.log("je suis un android");
-      this.fileChooser.open()
-      .then(uri => console.log(uri))
-      .catch(e => console.log(e));
+      this.fileChooser.open().then(uri => {
+        console.log('uri : ' + JSON.stringify(uri));
+
+        this.filePath.resolveNativePath(uri)
+          .then(file => {
+            console.log('file ' + JSON.stringify(file));
+            let filePath: string = file;
+            if (filePath) {
+              alert(filePath);
+            }
+          })
+          .catch(err => console.log(err));
+      })
+        .catch(e => console.log(e));
     }
 
   }

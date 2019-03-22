@@ -2,28 +2,28 @@ page-detail {
     .detail-btn-color {
         background-color: #795548;
     }
-    
+
     .detail-btn-color:hover {
         background-color: #455A64 !important;
     }
-    
+
     .detail-title {
         font-size: 2em;
         font-family: "Roboto Black";
     }
-    
+
     .detail-website {
         font-style: italic;
     }
-    
+
     .imdbRatingRed {
         background-color: #F44336;
     }
-    
+
     .imdbRatingGreen {
         background-color: #4CAF50;
     }
-    
+
     .detail-list-seasons-title {
         font-weight: bold;
     }
@@ -31,11 +31,12 @@ page-detail {
     .detail-list-seasons-row {
         cursor: pointer;
     }
-    
+
     .detail-other-font {
         font-family: "Roboto Light";
+        text-align: center;
     }
-    
+
     .detail-plot {
         margin: 0.5vh 0vh 2.5vh 0vh;
         text-align: justify;

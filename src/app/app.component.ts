@@ -14,8 +14,6 @@ export class MyApp {
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, androidPermissions: AndroidPermissions) {
     platform.ready().then(() => {
-      alert("android");
-      
       androidPermissions.requestPermissions(
         [
           androidPermissions.PERMISSION.READ_EXTERNAL_STORAGE,
@@ -32,7 +30,7 @@ export class MyApp {
       splashScreen.hide();
     }).catch((error) => {
       alert(error);
-      console.log(error);      
+      console.log(error);
     });
   }
 }

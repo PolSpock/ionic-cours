@@ -111,23 +111,18 @@ export class DetailPage {
   }
 
   private downloadImage() {
-    alert("downloadImage");
-    console.log("downloadImage");
-
     this.exportProvider.exportImage(this.infoImage);
   };
 
   private openTrailer() {
     this.youtubeProvider.getIdByTitle(this.allInfos.Title).then((data) => {
-      console.log(data);
-
       const videoId = data.items[0].id.videoId;
       if (videoId) {
-        if (this.platform.is('cordova')) {            
+        if (this.platform.is('cordova')) {
           this.youtubeVideoPlayer.openVideo(videoId);
         } else {
           window.open('https://www.youtube.com/watch?v=' + videoId);
-        }      
+        }
       }
     });
   }
